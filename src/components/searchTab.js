@@ -55,7 +55,17 @@ const SearchTap = () => {
         <div>관련검색어</div>
         <ul>
           {search.map((data, index) => (
-            <li key={index}>{data}</li>
+            <div>
+              {data.includes(keyWord) ? (
+                <>
+                  {data.split(keyWord)[0]}
+                  <span style={{ fontWeight: "bold" }}>{keyWord}</span>
+                  {data.split(keyWord)[1]}
+                </>
+              ) : (
+                <li key={index}>{data}</li>
+              )}
+            </div>
           ))}
         </ul>
       </Wrap>
@@ -74,4 +84,12 @@ const Wrap = styled.div`
 
 const InputContainer = styled.div``;
 
-const RecentContainer = styled.div``;
+const RecentContainer = styled.div`
+  text-align: center;
+  & > ul > li {
+    list-style-position: outside;
+    list-style: decimal;
+    float: left;
+    margin-left: 20px;
+  }
+`;
